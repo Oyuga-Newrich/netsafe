@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{../css/styles.css}" />
+    <title>Registration Form</title>
+</head>
+<body class="list-page">
+<nav>
+    <div class="nav__header">
+        <div class="nav__logo">
+            <a href="/">Wanwan</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+        </div>
+    </div>
+</nav>
+<div class="container__in">
+    <div class="message" th:if="${message != null}">
+        [[${message}]]
+    </div>
+    <h2>Registration</h2>
+    <form
+            th:action="@{/registration}"
+            method="post"
+            role="form"
+            th:object="${user}"
+    >
+        <div class="form-group">
+<!--            <label for="fullname">Fullname:</label>-->
+            <input th:field="*{fullname}" type="text" id="fullname" name="fullname" placeholder="Fullname" required>
+        </div>
+
+        <div class="form-group">
+<!--            <label for="email">Email:</label>-->
+            <input th:field="*{email}" type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="form-group">
+<!--            <label for="password">Password:</label>-->
+            <input th:field="*{password}" type="password" id="password" name="password" placeholder="Password" required minlength="8">
+        </div>
+        <input type="submit" value="Register">
+    </form>
+    <br>
+    <div class="form-group">
+        <span style="color: white;">Have an account? <a href="/" th:href="@{/login}">Login</a> </span>
+    </div>
+
+</div>
+</body>
+</html>

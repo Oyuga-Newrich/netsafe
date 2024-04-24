@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{../css/styles.css}" />
+    <title>Web Design | Home Page</title>
+</head>
+<body class="list-page">
+<nav>
+    <div class="nav__header">
+        <div class="nav__logo">
+            <a href="user">Wanwan</a>
+        </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+        <li><a href="user">HOME</a></li>
+        <li><a href="my_events">Explore</a></li>
+        <li><a href="event_register">Register Alert</a></li>
+    </ul>
+</nav>
+
+<div class="container-list">
+    <div class="container_left">
+        <div class="incident-list">
+            <form>
+                <div class="input-container">
+                    <input type="text" class="input-field" placeholder="Search" />
+                    <button class="btn"><i class="ri-search-line"></i></button>
+                </div>
+            </form>
+            <div class="incident-container">
+                <div class="incident">
+                    <div class="columns-container">
+                        <div class="column" th:each="event :${event}">
+                            <div class="column-date" th:text="${event.date + ' ' + event.time}"></div>
+                            <div class="column-category" th:text="${event.majorCategory + ', ' + event.minorCategory}"></div>
+                            <div class="column-details" th:text="${event.details}"></div>
+                            <div class="column-town" th:text="${event.town + ', ' + event.location}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_right">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63819.90123249617!2d36.64819962017797!3d-1.3297581954095812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1c9f26ac0519%3A0x27e09cffb4d4bbe!2sKaren%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1713774821838!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<!--<div class="searchbar">-->
+<!--    <input type="text"-->
+<!--           placeholder="Search">-->
+<!--</div>-->
+<!--<div class="event-container">-->
+<!--    <table>-->
+<!--        <caption>Event Details</caption>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Major Category</th>-->
+<!--            <th>Details</th>-->
+<!--            <th>Town</th>-->
+<!--            <th>Date/Time</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="event :${event}">-->
+<!--            <td th:text="${event.majorCategory + ', ' + event.minorCategory}"></td>-->
+<!--            <td th:text="${event.details}"></td>-->
+<!--            <td th:text="${event.town}"></td>-->
+<!--            <td th:text="${event.date + ' ' + event.time}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<div class="report-container">-->
+<!--    <div class="report-header">-->
+<!--        <h1 class="recent-Articles">Recent Articles</h1>-->
+<!--&lt;!&ndash;        <button class="view">View All</button>&ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <div class="report-body">-->
+<!--        <div class="report-topic-heading">-->
+<!--            <h3 class="t-op">Article</h3>-->
+<!--            <h3 class="t-op">Category</h3>-->
+<!--            <h3 class="t-op">Town</h3>-->
+<!--            <h3 class="t-op">Date/Time</h3>-->
+<!--        </div>-->
+
+<!--        <div class="items">-->
+<!--            <div class="item" th:each="event :${event}">-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.details}"></h3>-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.majorCategory + ', ' + event.minorCategory}"></h3>-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.town}"></h3>-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.date + ' ' + event.time}"></h3>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <!-- Include Boxicons library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css">
+    <link rel="stylesheet" href="../css/main.css"> <!-- Link to main CSS stylesheet -->
+    <link rel="stylesheet" href="responsive.css"> <!-- Link to responsive CSS stylesheet -->
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <div class="logosec">
+        <div class="logo">Wanwan</div>
+        <i class='bx bx-menu menuicn' id="menuicn"></i>
+    </div>
+    <div class="searchbar">
+        <input type="text" placeholder="Search">
+        <div class="searchbtn">
+            <i class='bx bx-search-alt srchicn'></i>
+        </div>
+    </div>
+    <div class="message">
+        <div class="circle"></div>
+        <i class='bx bx-message-square-detail icn'></i>
+        <div class="dp">
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png" class="dpicn" alt="dp">
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Area -->
+<div class="main-container">
+    <!-- Sidebar Navigation -->
+    <div class="navcontainer">
+        <nav class="nav">
+            <div class="nav-upper-options">
+                <div class="nav-option option1">
+                    <i class='bx bx-grid-alt nav-img'></i>
+                    <h3>Dashboard</h3>
+                </div>
+                <a href="/available_events" class="option2 nav-option">
+                    <i class='bx bx-file nav-img'></i>
+                    <h3 >Articles</h3>
+                </a>
+                <a href="/report/html" class="nav-option option3">
+                    <i class='bx bx-bar-chart-alt nav-img'></i>
+                    <h3>Report</h3>
+                </a>
+                <a href="user" class="nav-option option4">
+                    <i class='bx bx-globe nav-img'></i>
+                    <h3>Website</h3>
+                </a>
+                <div class="nav-option option5">
+                    <i class='bx bx-user nav-img'></i>
+                    <h3>Profiles</h3>
+                </div>
+                <div class="nav-option option6">
+                    <i class='bx bx-cog nav-img'></i>
+                    <h3>Settings</h3>
+                </div>
+                <a sec:authorize="isAuthenticated" th:href="@{/logout}" class="nav-option logout">
+<!--                <a sec:authorize="isAuthenticated" th:href="@{/logout}" class="nav-option logout">-->
+                    <i class='bx bx-log-out nav-img'></i>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="searchbar2">
+            <input type="text" name="" id="" placeholder="Search">
+            <div class="searchbtn">
+                <i class='bx bx-search srchicn'></i>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <!-- Boxes with Statistics -->
+            <div class="box box1">
+                <div class="text">
+                    <h2 class="topic-heading">60.5k</h2>
+                    <h2 class="topic">Alert Reported</h2>
+                </div>
+                <i class='bx bx-show-alt' alt="Views"></i>
+            </div>
+            <div class="box box2">
+                <div class="text">
+                    <h2 class="topic-heading">Crime</h2>
+                    <h2 class="topic">Trending Category</h2>
+                </div>
+                <i class='bx bx-bell' alt="Trending Category"></i>
+            </div>
+            <div class="box box3">
+                <div class="text">
+                    <h2 class="topic-heading">Nairobi</h2>
+                    <h2 class="topic">Most Secure Town</h2>
+                </div>
+                <i class='bx bx-shield' alt="Most Secure Town"></i>
+            </div>
+            <!-- More Boxes for Statistics -->
+            <!-- Add additional content as needed -->
+        </div>
+
+        <!-- Report Section -->
+<!--        <div class="report-container"> -->
+<!--            <div class="report-header">-->
+<!--                <h1 class="recent-Articles">Recent Articles</h1>-->
+<!--                <button class="view">View All</button>-->
+<!--            </div>-->
+<!--            <div class="report-body">-->
+<!--                <div class="report-topic-heading">-->
+<!--                    <h3 class="t-op">Category</h3>-->
+<!--                    <h3 class="t-op">Alert</h3>-->
+<!--                    <h3 class="t-op">Date</h3>-->
+<!--                    <h3 class="t-op">Status</h3>-->
+<!--                </div>-->
+<!--                <div class="items">-->
+<!--                    &lt;!&ndash; Article Items with Boxicons &ndash;&gt;-->
+<!--                    <div class="item1">-->
+<!--                        <h3 class="t-op-nextlvl">Article 73</h3>-->
+<!--                        <h3 class="t-op-nextlvl">2.9k</h3>-->
+<!--                        <h3 class="t-op-nextlvl">210</h3>-->
+<!--                        <h3 class="t-op-nextlvl label-tag">Published</h3>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Add more article items here &ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="event-container">
+            <table>
+                <caption>Published Alerts</caption>
+                <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Details</th>
+                    <th>Town</th>
+                    <th>Date/Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="event :${event}">
+                    <td th:text="${event.majorCategory + ', ' + event.minorCategory}"></td>
+                    <td th:text="${event.details}"></td>
+                    <td th:text="${event.town}"></td>
+                    <td th:text="${event.date + ' ' + event.time}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="../js/index.js"></script> <!-- Include JavaScript file -->
+</body>
+</html>

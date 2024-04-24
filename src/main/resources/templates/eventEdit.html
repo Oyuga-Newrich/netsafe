@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{../css/styles.css}" />
+    <title>Web Design | Event Registration Page</title>
+</head>
+<body>
+<nav>
+    <div class="nav__header">
+        <div class="nav__logo">
+            <a href="user-page">Wanwan</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+        </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+        <li><a href="user-page">HOME</a></li>
+        <li><a href="my_events">Explore</a></li>
+        <li><a href="event_register">Register Alert</a></li>
+    </ul>
+</nav>
+<div class="form-body">
+    <div class="form-container" >
+
+        <div class="title">Edit Incident</div>
+        <form th:action="@{/save}" method="post" th:object="${event}">
+            <div class="incident-details">
+                <div class="input-box">
+                    <span class="majorCategory">Major</span>
+                    <input type="text" id="majorCategory" name="majorCategory" placeholder="Enter Major Category" th:value="${event.majorCategory}">
+                    <!--                <input type="text" id="majorCategory" name="majorCategory" placeholder="Enter Major Category" th:field="*{majorCategory}">-->
+                </div>
+
+                <div class="input-box">
+                    <span class="minorCategory">Minor</span>
+                    <input type="text" id="minorCategory" name="minorCategory" placeholder="Enter Minor Category" th:value="${event.minorCategory}">
+                </div>
+
+                <div class="input-box">
+                    <span class="town">Town</span>
+                    <input type="text" id="town" name="town" placeholder="Enter town" th:value="${event.town}">
+                </div>
+
+                <div class="input-box">
+                    <span class="location">Location</span>
+                    <input type="text" id="location" name="location" placeholder="Enter location" th:value="${event.location}">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Details</span>
+                    <textarea id="details" name="details" placeholder="Enter details" th:value="${event.details}"></textarea>
+                </div>
+
+                <div class="input-box">
+                    <span class="date">Date</span>
+                    <input type="date" id="date" name="date" th:value="${event.date}">
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="main.js"></script>
+</body>
+</html>

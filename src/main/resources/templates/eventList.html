@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{../css/styles.css}" />
+    <title>Web Design | Home Page</title>
+</head>
+<body>
+<nav>
+    <div class="nav__header">
+        <div class="nav__logo">
+            <a href="user">Wanwan</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+        </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+        <li><a href="user">HOME</a></li>
+        <li><a href="my_events">Explore</a></li>
+        <li><a href="event_register">Register Alert</a></li>
+    </ul>
+    <div class="nav__btns">
+        <button class="btn"><i class="ri-search-line"></i></button>
+    </div>
+</nav>
+<div class="searchbar">
+    <input type="text"
+           placeholder="Search">
+</div>
+<div class="table-container">
+    <table>
+        <caption>Event Details</caption>
+        <thead>
+        <tr>
+            <th>Major Category</th>
+            <th>Minor Category</th>
+            <th>Location</th>
+            <th>Town</th>
+            <th>Details</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event :${event}">
+            <td th:text="${event.majorCategory}"></td>
+            <td th:text="${event.minorCategory}"></td>
+            <td th:text="${event.location}"></td>
+            <td th:text="${event.town}"></td>
+            <td th:text="${event.details}"></td>
+            <td th:text="${event.date}"></td>
+            <td>
+                <a th:href="@{'/mylist/' + ${event.id}}" class="button-link">Add</a>
+                <a th:href="@{'/deleteMylist/' + ${event.id}}" class="button-link">Delete</a>
+                <a th:href="@{'/editEvent/' + ${event.id}}" class="button-link">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div class="report-container">-->
+<!--    <div class="report-header">-->
+<!--        <h1 class="recent-Articles">Recent Articles</h1>-->
+<!--        <button class="view">View All</button>-->
+<!--    </div>-->
+
+<!--    <div class="report-body">-->
+<!--        <div class="report-topic-heading">-->
+<!--            <h3 class="t-op">Article</h3>-->
+<!--            <h3 class="t-op">Category</h3>-->
+<!--            <h3 class="t-op">Town</h3>-->
+<!--            <h3 class="t-op">Date/Time</h3>-->
+<!--            <h3 class="t-op">Action</h3>-->
+<!--        </div>-->
+
+<!--        <div class="items">-->
+<!--            <div class="item" th:each="event :${event}">-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.details}"></h3>-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.majorCategory + ', ' + event.minorCategory}"></h3>-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.town}"></h3>-->
+<!--                <h3 class="t-op-nextlvl" th:text="${event.date + ' ' + event.time}"></h3>-->
+<!--                <h3><a th:href="@{'/mylist/' + ${event.id}}" class="button-link">Add</a></h3>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="main.js"></script>
+</body>
+</html>

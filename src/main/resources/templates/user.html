@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+          rel="stylesheet"
+  />
+  <link rel="stylesheet" th:href="@{../css/styles.css}" />
+  <title>Web Design | Home Page</title>
+</head>
+<body>
+<nav>
+  <div class="nav__header">
+    <div class="nav__logo">
+      <a href="user">Wanwan</a>
+    </div>
+    <div class="nav__menu__btn" id="menu-btn">
+      <i class="ri-menu-line"></i>
+    </div>
+  </div>
+  <ul class="nav__links" id="nav-links">
+    <li><a href="user">HOME</a></li>
+    <li><a href="my_events">Explore</a></li>
+    <li><a href="event_register">Register Alert</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <div class="container__left">
+    <h1>Protecting each other, hand in hand.</h1>
+    <div class="container__btn">
+      <a sec:authorize="isAuthenticated" th:href="@{/logout}" class="btn">LOGOUT</a>
+    </div>
+  </div>
+  <div class="container__right">
+    <div class="images">
+      <img src="images/fire-extinguishers.jpg" alt="image-1" class="image-1" />
+      <img src="images/alert1.jpeg" alt="image-2" class="image-2" />
+    </div>
+    <div class="content">
+      <h2>Together Forever</h2>
+      <h3>Saving Lives</h3>
+      <p>
+        In a world where compassion thrives,
+        people unite to protect and care for one another.
+        Through family, friendship, and community,
+        we find strength in unity. Kindness and empathy are freely exchanged,
+        creating sanctuaries of love and understanding.
+        Protecting each other becomes a profound expression of our shared humanity.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="main.js"></script>
+</body>
+</html>
