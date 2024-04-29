@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{../css/styles.css}" />
+    <title>Web Design | Home Page</title>
+</head>
+<body>
+<nav>
+    <div class="nav__header">
+        <div class="nav__logo">
+            <a href="user">Wanwan</a>
+        </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+        <li><a href="user">HOME</a></li>
+        <li><a href="about">ABOUT</a></li>
+        <li><a href="my_events">EXPLORE</a></li>
+        <li><a href="event_register">REPORT ALERT</a></li>
+    </ul>
+</nav>
+
+
+<div class="container-list">
+    <div class="container_left">
+        <div class="about-container">
+            <div class="content" th:each="event :${event}">
+                <h3 th:text="${event.town + ', ' + event.location}"></h3>
+                <p th:text="${event.date + ' ' + event.time}">
+                </p>
+                <p th:text="${event.details}">
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="container_right">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63819.90123249617!2d36.64819962017797!3d-1.3297581954095812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1c9f26ac0519%3A0x27e09cffb4d4bbe!2sKaren%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1713774821838!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="main.js"></script>
+</body>
+</html>
