@@ -7,10 +7,11 @@
             href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
             rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{../css/styles.css}" />
-    <title>Web Design | Event Registration Page</title>
+    <title>Web Design | Incident Registration Page</title>
 </head>
-<body>
+<body class="register-page">
 <nav>
     <div class="nav__header">
         <div class="nav__logo">
@@ -21,24 +22,27 @@
         </div>
     </div>
     <ul class="nav__links" id="nav-links">
-        <li><a href="user-page">HOME</a></li>
-        <li><a href="my_events">Explore</a></li>
-        <li><a href="event_register">Register Alert</a></li>
+        <li><a href="user">HOME</a></li>
+        <li><a href="about">ABOUT</a></li>
+        <li><a href="my_events">EXPLORE</a></li>
+        <li><a href="event_register">REPORT ALERT</a></li>
     </ul>
 </nav>
 <div class="form-body">
     <div class="form-container" >
-
+        <div class="message" th:if="${message != null}">
+            [[${message}]]
+        </div>
         <div class="title">Report Incident</div>
         <form th:action="@{/save}" method="post">
             <div class="incident-details">
 
                 <div class="input-box">
-                    <span class="minorCategory">Minor</span>
+                    <span class="minorCategory">Major Category</span>
                     <select id="majorCategory" name="majorCategory">
-                        <option th:each="category: ${categories}"
-                                th:text="${category.major}"
-                                th:value="${category.minor}">
+                        <option th:each="majorCategory: ${majorCategories}"
+                                th:text="${majorCategory.major}"
+                                th:value="${majorCategory.id}">
                         </option>
                     </select>
                 </div>
@@ -50,11 +54,11 @@
 <!--                </div>-->
 
                 <div class="input-box">
-                    <span class="minorCategory">Minor</span>
+                    <span class="minorCategory">Minor Category</span>
                     <select id="minorCategory" name="minorCategory">
-                        <option th:each="category: ${categories}"
-                                th:text="${category.minor}"
-                                th:value="${category.major}">
+                        <option th:each="minorcategory: ${minorcategories}"
+                                th:text="${minorcategory.minor}"
+                                th:value="${minorcategory.id}">
                         </option>
                     </select>
                 </div>
@@ -75,8 +79,8 @@
                 </div>
 
                 <div class="input-box">
-                    <span class="details">Details</span>
-                    <textarea id="details" name="details" placeholder="Enter details"></textarea>
+                    <span class="details">Incident Details</span>
+                    <textarea id="details" name="details" placeholder="Enter incident details" required></textarea>
                 </div>
 
                 <div class="input-box">
@@ -84,20 +88,54 @@
                     <input type="date" id="date" name="date">
                 </div>
 
-                <div class="input-box">
-                    <span class="time">Time</span>
-                    <input type="time" id="time" name="time" required>
+                <div class="current-time">
+                    <span class="time-label">Current Time:</span>
+                    <span id="currentTime"></span>
                 </div>
             </div>
             <div class="button">
-                <input type="submit" value="Register">
+                <input type="submit" value="Report">
             </div>
         </form>
     </div>
 </div>
 
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h2>Wanwan</h2>
+            <p>&copy; Wanwan 2024</p>
+        </div>
+        <div class="footer-col">
+            <h3>
+                Menu
+            </h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Report Incident</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-twitter"></i></a>
+                <a href=""><i class="fa-solid fa-envelope"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
 
+<!--<script>-->
+<!--    // Get today's date in the format "YYYY-MM-DD"-->
+<!--    const today = new Date().toISOString().slice(0, 10);-->
+
+<!--    // Set the value of the date input field to today's date-->
+<!--    document.getElementById('date').value = today;-->
+<!--</script>-->
 <script src="https://unpkg.com/scrollreveal"></script>
-<script src="main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

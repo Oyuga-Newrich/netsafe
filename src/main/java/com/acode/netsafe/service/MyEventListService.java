@@ -23,5 +23,9 @@ public class MyEventListService {
     public void deleteById(Integer id) {
         myEventsRepository.deleteById(id);
     }
+
+    public List<MyEventList> search(String keyword) {
+        return myEventsRepository.search(keyword);
+    }
 }
 

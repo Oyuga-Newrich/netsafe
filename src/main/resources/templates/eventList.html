@@ -22,8 +22,9 @@
     </div>
     <ul class="nav__links" id="nav-links">
         <li><a href="user">HOME</a></li>
-        <li><a href="my_events">Explore</a></li>
-        <li><a href="event_register">Register Alert</a></li>
+        <li><a href="about">ABOUT</a></li>
+        <li><a href="my_events">EXPLORE</a></li>
+        <li><a href="event_register">REPORT ALERT</a></li>
     </ul>
     <div class="nav__btns">
         <button class="btn"><i class="ri-search-line"></i></button>
@@ -56,10 +57,19 @@
             <td th:text="${event.details}"></td>
             <td th:text="${event.date}"></td>
             <td>
-                <a th:href="@{'/mylist/' + ${event.id}}" class="button-link">Add</a>
-                <a th:href="@{'/deleteMylist/' + ${event.id}}" class="button-link">Delete</a>
-                <a th:href="@{'/editEvent/' + ${event.id}}" class="button-link">Edit</a>
+                <div class="btn-group">
+<!--                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                        Actions-->
+<!--                    </button>-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a th:href="@{'/mylist/' + ${event.id}}" class="dropdown-item">Add</a>
+                        <a th:href="@{'/deleteMylist/' + ${event.id}}" class="dropdown-item">Delete</a>
+                        <a th:href="@{'/editEvent/' + ${event.id}}" class="dropdown-item">Edit</a>
+                    </div>
+                </div>
             </td>
+
+
         </tr>
         </tbody>
     </table>
@@ -91,6 +101,8 @@
 <!--    </div>-->
 <!--</div>-->
 <script src="https://unpkg.com/scrollreveal"></script>
-<script src="main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

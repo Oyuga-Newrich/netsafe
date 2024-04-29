@@ -1,11 +1,13 @@
 package com.acode.netsafe.controller;
 
-import com.acode.netsafe.entity.Category;
 import com.acode.netsafe.entity.Event;
+import com.acode.netsafe.entity.MajorCategory;
+import com.acode.netsafe.entity.Minorcategory;
 import com.acode.netsafe.entity.MyEventList;
 import com.acode.netsafe.service.EventService;
 import com.acode.netsafe.service.MyEventListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,11 @@ public class EventController {
         return "user";
     }
 
+    @GetMapping("/about")
+    public  String about() {
+        return "about";
+    }
+
     @GetMapping("/event_register")
     public String eventRegister() {
         return "eventRegister";
@@ -40,9 +47,11 @@ public class EventController {
     }
 
     @PostMapping("/save")
-    public String addEvent(@ModelAttribute Event event) {
+    public String addEvent(@ModelAttribute Event event, Model model) {
         eventService.save(event);
-        return "redirect:/available_events";
+        model.addAttribute("message", "Incident Reported Successfull.");
+        return "eventRegister";
+//        return "redirect:/available_events";
     }
 
     @GetMapping("/my_events")
@@ -59,6 +68,15 @@ public class EventController {
         myEventListService.saveMyEvents(myEvent);
         return "redirect:/my_events";
     }
+
+//    @RequestMapping("/viewEvent/{id}")
+//    public String viewEvent(@PathVariable("id") Integer id) {
+//        Event event= eventService.getEventById(id);
+//        MyEventList myEvent=new MyEventList(event.getId(),event.getLocation(),event.getTown(),event.getDetails(),event.getMajorCategory(),event.getMinorCategory(),event.getDate(),event.getTime());
+//        myEventListService.saveMyEvents(myEvent);
+//        return "viewEvent";
+//
+//    }
 
     @RequestMapping("/editEvent/{id}")
     public String editEvent(@PathVariable("id") Integer id, Model model) {
@@ -86,15 +104,37 @@ public class EventController {
         return "event_register";
     }
 
-    @ModelAttribute("categories")
-    public List<Category> getCategories () {
-        List<Category> list = new ArrayList<Category>();
-        list.add(new Category("Crime", "Robbery"));
-        list.add(new Category("Crime", "Criminal Killing"));
-        list.add(new Category("Crime", "Arrest"));
-        list.add(new Category("Crime", "Fire"));
-        list.add(new Category("Crime", "Gang Activities"));
+    @ModelAttribute("minorcategories")
+    public List<Minorcategory> getMinorcategories () {
+        List<Minorcategory> list = new ArrayList<Minorcategory>();
+        list.add(new Minorcategory("Robbery", "Robbery"));
+        list.add(new Minorcategory("Criminal Killing", "Criminal Killing"));
+        list.add(new Minorcategory("Arrest", "Arrest"));
+        list.add(new Minorcategory("Fire", "Fire"));
+        list.add(new Minorcategory("Gang Activities", "Gang Activities"));
+        list.add(new Minorcategory("Civil Disruption", "Civil Disruption"));
+        list.add(new Minorcategory("Shooting", "Shooting"));
+        list.add(new Minorcategory("Floods", "Floods"));
         return list;
     }
+
+    @ModelAttribute("majorCategories")
+    public List<MajorCategory> getMajorcategories () {
+        List<MajorCategory> list = new ArrayList<MajorCategory>();
+        list.add(new MajorCategory("Crime", "Crime"));
+        list.add(new MajorCategory("Accident", "Accident"));
+        list.add(new MajorCategory("Terrorism", "Terrorism"));
+        list.add(new MajorCategory("Air Strike", "Air Strike"));
+        list.add(new MajorCategory("Natural Disaster", "Natural Disaster"));
+        return list;
+    }
+
+
+    @GetMapping("/search")
+    public String search(@Param("keyword") String keyword) {
+        System.out.println("keyword: " + keyword);
+        return "my_events";
+    }
+
 }
 
